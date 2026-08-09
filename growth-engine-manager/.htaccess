@@ -1,0 +1,54 @@
+# ----------------------------------------------------------------------
+# Configuración Básica de Servidor y Codificación
+# ----------------------------------------------------------------------
+ServerSignature Off
+AddDefaultCharset UTF-8
+
+# ----------------------------------------------------------------------
+# Seguridad de Archivos Sensibles y Estructura Crítica
+# ----------------------------------------------------------------------
+# Bloquear acceso a archivos ocultos (como .git, .gitignore, etc.)
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloqueo estricto para cualquier variante de archivo .env (.env, .env.local, .env.php, etc.)
+<FilesMatch "(^\.env|\.env.*)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Ocultar el archivo de caché interno de datos
+<FilesMatch "^cache_meta_ads\.json$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ----------------------------------------------------------------------
+# Motor de Reescritura y Reglas de Permisos (RewriteEngine)
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. PERMITIR acceso a meta_ads.php ÚNICAMENTE si incluye 'action=get_insights'
+    # Admite parámetros adicionales requeridos por el frontend como &force=true
+    RewriteCond %{QUERY_STRING} (?:^|&)action=get_insights(?:&|$) [NC]
+    RewriteCond %{REQUEST_URI} ^/meta_ads\.php$
+    RewriteRule ^ - [L]
+
+    # 2. BLOQUEAR cualquier otra petición directa a meta_ads.php sin la acción permitida
+    RewriteCond %{REQUEST_URI} ^/meta_ads\.php$
+    RewriteRule ^ - [F,L]
+</IfModule>
+
+# ----------------------------------------------------------------------
+# Encabezados de Seguridad (HTTP Security Headers)
+# ----------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

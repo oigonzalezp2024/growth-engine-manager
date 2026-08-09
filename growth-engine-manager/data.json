@@ -1,0 +1,83 @@
+{
+  "matriz_marco_logico": {
+    "titulo": "Plan de Acción y Optimización de Pauta Publicitaria Digital",
+    "periodo_ejecucion": "Agosto 2026",
+    "niveles": [
+      {
+        "nivel": "FIN",
+        "resumen_narrativo": "Incrementar la rentabilidad global del e-commerce y maximizar el retorno de la inversión publicitaria (ROAS).",
+        "indicadores_verificables": [
+          "ROAS (Retorno de Inversión Publicitaria) >= 4.0x",
+          "Incremento del 25% en la facturación mensual por canal digital"
+        ],
+        "medios_de_verificacion": [
+          "Reportes de facturación de la plataforma e-commerce",
+          "Administrador de Anuncios de Meta"
+        ],
+        "supuestos": [
+          "La demanda del mercado de calzado se mantiene estable",
+          "Existencia de stock e inventario suficiente de los productos promocionados"
+        ]
+      },
+      {
+        "nivel": "PROPOSITO",
+        "resumen_narrativo": "Consolidar una estrategia de pauta digital altamente eficiente centrada en conversión direct-to-consumer (D2C).",
+        "indicadores_verificables": [
+          "Costo por Adquisición (CPA) inferior a $15,000 COP",
+          "Tasa de conversión de la página web >= 2.5%"
+        ],
+        "medios_de_verificacion": [
+          "Métricas del Píxel de Meta y API de Conversiones",
+          "Dashboard analítico de la plataforma web / Google Analytics"
+        ],
+        "supuestos": [
+          "La tienda web mantiene un tiempo de carga óptimo (inferior a 2 segundos en dispositivos móviles)",
+          "La pasarela de pago opera sin interrupciones técnicas"
+        ]
+      },
+      {
+        "nivel": "COMPONENTES",
+        "resumen_narrativo": [
+          "C1. Campañas publicitarias reestructuradas hacia objetivo de Ventas/Conversión.",
+          "C2. Creativos optimizados enfocados en productos de alto rendimiento (Línea Confort).",
+          "C3. Embudo de medición e implementación de Píxel y API de Conversiones activo."
+        ],
+        "indicadores_verificables": [
+          "100% del presupuesto publicitario reasignado a campañas de Conversión",
+          "CTR por enlace sostenido >= 4.0% en anuncios activos de calzado",
+          "Medición del 100% de eventos del embudo (AddToCart, InitiateCheckout, Purchase)"
+        ],
+        "medios_de_verificacion": [
+          "Configuración del Administrador de Anuncios de Meta",
+          "Dashboard de eventos en Meta Events Manager"
+        ],
+        "supuestos": [
+          "Meta aprueba los anuncios sin restricciones ni políticas de bloqueo",
+          "Integración técnica fluida entre el sitio web y los sistemas de Meta"
+        ]
+      },
+      {
+        "nivel": "ACTIVIDADES",
+        "resumen_narrativo": [
+          "A1.1. Desactivar campañas e intenciones de Reconocimiento y Tráfico Genérico.",
+          "A1.2. Reasignar el presupuesto a conjuntos de anuncios con objetivo explícito de Conversión.",
+          "A2.1. Escalar la pauta de los productos top (Sandalia Confort Argollas y Triple Tira Prada).",
+          "A2.2. Diseñar e implementar carruseles y catálogos dinámicos con la línea Confort.",
+          "A3.1. Validar la trazabilidad completa del embudo de ventas y eventos del Píxel."
+        ],
+        "indicadores_verificables": [
+          "Reasignación del 100% del presupuesto ejecutada en menos de 24 horas",
+          "Lanzamiento de 3 a 5 variantes creativas por semana",
+          "Pruebas de eventos completadas sin discrepancias de datos"
+        ],
+        "medios_de_verificacion": [
+          "Logs de cambios del Administrador de Anuncios",
+          "Reportes semanales de rendimiento creativo y métricas de clics"
+        ],
+        "supuestos": [
+          "Disponibilidad técnica inmediata para realizar ajustes o pruebas en la tienda web"
+        ]
+      }
+    ]
+  }
+}

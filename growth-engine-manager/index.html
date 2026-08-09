@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Growth Suite | Marco Lógico & Dashboard Meta Ads</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <span class="badge">PRO</span>
+      <h2>Growth Engine Manager</h2>
+    </div>
+    <nav class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('mml-tab', event)">📌 Marco Lógico</button>
+      <button class="tab-btn" onclick="switchTab('ads-tab', event)">📊 Anuncios</button>
+      <a class="tab-btn-a" href="./evaluador.html">📊 Evaluar IA</a>
+      <button class="btn btn-outline" onclick="resetAllData()" title="Restablece los datos locales">🔄</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- TAB 1: MATRIZ DE MARCO LÓGICO (MML) -->
+    <section id="mml-tab" class="tab-content active">
+      <div class="section-header">
+        <div>
+          <h1 id="mml-titulo">Cargando Matriz...</h1>
+          <p id="mml-periodo" class="text-muted">Período: -</p>
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-secondary" onclick="importJSONTrigger()">📥 Cargar</button>
+          <button class="btn btn-primary" onclick="exportJSON()">📤 Exportar</button>
+          <input type="file" id="json-input" accept=".json" style="display:none" onchange="loadJSONFile(event)">
+        </div>
+      </div>
+
+      <div class="mml-grid" id="mml-container">
+        <!-- Render dinámico desde JS -->
+      </div>
+    </section>
+
+    <!-- TAB 2: EDITOR Y ANALIZADOR DE ANUNCIOS -->
+    <section id="ads-tab" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h1>Gestor de Campañas</h1>
+          <p class="text-muted">Edita, importa tu reporte o sincroniza directamente desde Meta Ads.</p>
+        </div>
+        <div class="action-buttons">
+          <button id="btn-sync-php" class="btn btn-primary" onclick="syncMetaAdsFromPHP()">🔄 Sincronizar Meta (PHP)</button>
+          <button class="btn btn-secondary" onclick="importExcelTrigger()">📂 Excel/CSV</button>
+          <button class="btn btn-primary" onclick="addRowAds()">➕ Nuevo</button>
+          <button class="btn btn-outline" onclick="exportAdsCSV()">📊 CSV</button>
+          <input type="file" id="excel-input" accept=".xlsx, .xls, .csv" style="display:none" onchange="loadExcelFile(event)">
+        </div>
+      </div>
+
+      <div class="card table-card">
+        <div class="table-wrapper">
+          <table id="ads-table">
+            <thead>
+              <tr>
+                <th>Anuncio</th>
+                <th>Estado</th>
+                <th>Gasto (COP)</th>
+                <th>Impresiones</th>
+                <th>Clics</th>
+                <th>CTR (%)</th>
+                <th>Visitas</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="ads-table-body">
+              <!-- Render dinámico desde JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE EDICIÓN MML -->
+  <div id="modal-mml" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Editar Nivel MML</h3>
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-level-idx">
+        <label>Resumen Narrativo</label>
+        <textarea id="edit-narrativo" rows="3"></textarea>
+
+        <label>Indicadores Verificables (uno por línea)</label>
+        <textarea id="edit-indicadores" rows="3"></textarea>
+
+        <label>Medios de Verificación (uno por línea)</label>
+        <textarea id="edit-medios" rows="3"></textarea>
+
+        <label>Supuestos / Riesgos (uno por línea)</label>
+        <textarea id="edit-supuestos" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="saveMMLElement()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

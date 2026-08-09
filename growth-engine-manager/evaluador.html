@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Growth Suite | Auditoría MML con IA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <span class="badge">AI MODULE</span>
+      <h2>Auditoría Estratégica MML</h2>
+    </div>
+    <nav class="nav-tabs">
+      <a href="index.html" class="tab-btn">⬅️ Volver al Panel Principal</a>
+    </nav>
+  </header>
+
+  <main class="container" style="margin-top: 20px;">
+
+    <!-- PANEL DE CONTROL -->
+    <div class="card" style="padding: 20px; margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h2>Evaluador con IA (Gemini API)</h2>
+          <p class="text-muted">Procesa la Matriz de Marco Lógico junto a las métricas de Meta Ads para sugerir ajustes estratégicos.</p>
+        </div>
+        <div>
+          <!-- CORREGIDO: triggerAIEvaluation() -->
+          <button id="btn-run-ai" class="btn btn-primary" onclick="triggerAIEvaluation()">🤖 Ejecutar Auditoría</button>
+          <!-- CORREGIDO: renderHistoryUI() -->
+          <button class="btn btn-secondary" onclick="renderHistoryUI()">📜 Ver Historial / Rollback</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTADO DE CARGA -->
+    <div id="ai-loading" class="card" style="display:none; text-align:center; padding: 40px;">
+      <h3>⏳ Analizando desvíos y rendimiento de campañas...</h3>
+      <p class="text-muted">Procesando prompt en `ai_evaluator.php`</p>
+    </div>
+
+    <!-- RESULTADOS Y PROPUESTA -->
+    <div id="ai-results-panel" class="card" style="display:none; padding: 25px;">
+      <h3>📊 Diagnóstico Ejecutivo</h3>
+      <p id="ai-evaluacion-general" style="font-size: 1.1em; line-height: 1.5;"></p>
+
+      <hr style="margin: 20px 0;">
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <h4>🚩 Hallazgos Clave</h4>
+          <ul id="ai-hallazgos-list" style="line-height: 1.8;"></ul>
+        </div>
+        <div>
+          <h4>💡 Actividades Sugeridas</h4>
+          <ul id="ai-actividades-list" style="line-height: 1.8;"></ul>
+        </div>
+      </div>
+
+      <hr style="margin: 20px 0;">
+
+      <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+        ⚠️ <strong>Confirmación:</strong> Al hacer clic en <em>"Aprobar y Actualizar MML"</em>, se actualizarán los niveles en `localStorage` y se creará un respaldo automático.
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button class="btn btn-secondary" onclick="handleDiscardProposal()">Descartar Propuesta</button>
+        <button class="btn btn-primary" onclick="handleApplyProposal()">✅ Aprobar y Actualizar MML</button>
+      </div>
+    </div>
+
+    <!-- HISTORIAL Y ROLLBACK -->
+    <div id="ai-history-panel" class="card" style="display:none; padding: 25px; margin-top: 20px;">
+      <h3>📜 Historial de Snapshots y Rollback</h3>
+      <table class="table" style="width: 100%; margin-top: 15px;">
+        <thead>
+          <tr style="text-align: left;">
+            <th>Fecha / Hora</th>
+            <th>Motivo del Respaldo</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="history-table-body">
+          <!-- Render dinámico -->
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <script src="ai_evaluator.js"></script>
+  <script src="eval_app.js"></script>
+</body>
+</html>

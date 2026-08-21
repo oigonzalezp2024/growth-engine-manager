@@ -8,9 +8,11 @@
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 
+require_once './config.php';
+
 // 1. Configurar la API Key
-$apiKeyEnv = getenv('GEMINI_API_KEY');
-define('GEMINI_API_KEY', $apiKeyEnv ? $apiKeyEnv : 'GEMINI_API_KEY_AQUI'); // <--- Coloca tu API Key real aquí
+$apiKeyEnv = GEMINI_API_KEY; //getenv('GEMINI_API_KEY');
+define('GEMINI_API_KEY', $apiKeyEnv ? $apiKeyEnv : GEMINI_API_KEY); // <--- Coloca tu API Key real aquí
 
 define('GEMINI_ENDPOINT', 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent');
 

@@ -1,6 +1,9 @@
 <?php
+
+require_once './config.php';
+
 // Configuración de la API de Gemini
-$apiKey = "GEMINI_API_KEY_AQUI"; // Reemplaza esto con tu API Key real
+$apiKey = GEMINI_API_KEY; // "GEMINI_API_KEY_AQUI"; // Reemplaza esto con tu API Key real
 $model = "gemini-2.5-flash"; // Puedes usar gemini-1.5-pro u otro modelo disponible
 $url = "https://generativelanguage.googleapis.com/v1beta/models/" . $model . ":generateContent?key=" . $apiKey;
 

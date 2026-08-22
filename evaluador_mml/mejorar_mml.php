@@ -1,31 +1,31 @@
 <?php
+ob_start();
+
 header('Content-Type: application/json; charset=utf-8');
 
-require_once '../config.php';
+try {
+    require_once '../config.php';
+    require_once '../GeminiService.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(["error" => "Método no permitido. Utilice POST."]);
-    exit;
-}
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        echo json_encode(["error" => "Método no permitido. Utilice POST."]);
+        exit;
+    }
 
-$inputJSON = file_get_contents('php://input');
-$payloadData = json_decode($inputJSON, true);
+    $inputJSON = file_get_contents('php://input');
+    $payloadData = json_decode($inputJSON, true);
 
-if (!$payloadData || (!isset($payloadData['mml_original']) && !isset($payloadData['custom_prompt']))) {
-    http_response_code(400);
-    echo json_encode(["error" => "Payload inválido. Se requiere 'custom_prompt' o 'mml_original'."]);
-    exit;
-}
-
-$apiKey = GEMINI_API_KEY; 
-
-function mejorarMatrizMarcoLogico(string $promptUser, string $apiKey): string 
-{
-    $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
+    if (!$payloadData || (!isset($payloadData['mml_original']) && !isset($payloadData['custom_prompt']))) {
+        http_response_code(400);
+        echo json_encode(["error" => "Payload inválido. Se requiere 'custom_prompt' o 'mml_original'."]);
+        exit;
+    }
 
     $systemInstruction = "Eres un consultor senior experto en metodología de Marco Lógico (MML). "
         . "Tu objetivo es refactorizar y mejorar la Matriz de Marco Lógico en JSON recibida siguiendo las instrucciones recibidas. "
+        . "REGLA DE ESTRUCTURA MANDATORIA: En los niveles FIN y PROPOSITO, 'resumen_narrativo' debe ser una cadena (string). "
+        . "En los niveles COMPONENTES, ACTIVIDADES y ENTREGABLES, 'resumen_narrativo' DEBE ser un arreglo/array de cadenas de texto (list de strings), ordenados con prefijo (ej. C1., A1.1., E1.1.). "
         . "DEBES responder ÚNICAMENTE con el objeto JSON que cumpla el esquema estricto de producción.";
 
     $jsonSchema = [
@@ -45,7 +45,10 @@ function mejorarMatrizMarcoLogico(string $promptUser, string $apiKey): string
                                 "resumen_narrativo" => [
                                     "oneOf" => [
                                         ["type" => "STRING"],
-                                        ["type" => "ARRAY", "items" => ["type" => "STRING"]]
+                                        [
+                                            "type" => "ARRAY", 
+                                            "items" => ["type" => "STRING"]
+                                        ]
                                     ]
                                 ],
                                 "indicadores_verificables" => [
@@ -71,60 +74,29 @@ function mejorarMatrizMarcoLogico(string $promptUser, string $apiKey): string
         "required" => ["matriz_marco_logico"]
     ];
 
-    $payload = [
-        "system_instruction" => [
-            "parts" => [["text" => $systemInstruction]]
-        ],
-        "contents" => [
-            ["parts" => [["text" => $promptUser]]]
-        ],
-        "generationConfig" => [
-            "response_mime_type" => "application/json",
-            "response_schema" => $jsonSchema,
-            "temperature" => 0.2
-        ]
-    ];
-
-    $ch = curl_init($endpoint);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
-
-    $response = curl_exec($ch);
-
-    if (curl_errno($ch)) {
-        $errorMsg = curl_error($ch);
-        curl_close($ch);
-        throw new Exception("Error cURL: " . $errorMsg);
-    }
-
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($httpCode !== 200) {
-        throw new Exception("Error API Gemini (HTTP {$httpCode}): " . $response);
-    }
-
-    $responseData = json_decode($response, true);
-    return $responseData['candidates'][0]['content']['parts'][0]['text'] ?? '{}';
-}
-
-try {
     $promptFinal = $payloadData['custom_prompt'] ?? (
-        "Refactoriza la siguiente MML aplicando observaciones:\n\n" .
+        "Refactoriza la siguiente MML aplicando observaciones y garantizando el formato de listas en 'resumen_narrativo' para COMPONENTES, ACTIVIDADES y ENTREGABLES:\n\n" .
         json_encode($payloadData['mml_original'], JSON_UNESCAPED_UNICODE)
     );
 
-    $mmlOptimizadaRaw = mejorarMatrizMarcoLogico($promptFinal, $apiKey);
-    $mmlOptimizada = json_decode($mmlOptimizadaRaw, true);
+    $contents = [
+        [
+            "role" => "user",
+            "parts" => [["text" => $promptFinal]]
+        ]
+    ];
 
+    $gemini = new GeminiService(GEMINI_API_KEY, "gemini-2.5-flash");
+    $mmlOptimizadaRaw = $gemini->generateContent($contents, $systemInstruction, $jsonSchema, 0.2);
+
+    ob_clean();
     echo json_encode([
         "status" => "success",
-        "resultado_mml" => $mmlOptimizada
+        "resultado_mml" => json_decode($mmlOptimizadaRaw, true)
     ], JSON_UNESCAPED_UNICODE);
 
-} catch (Exception $e) {
+} catch (Throwable $e) {
+    ob_clean();
     http_response_code(500);
     echo json_encode(["error" => $e->getMessage()]);
 }

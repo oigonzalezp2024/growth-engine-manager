@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditor y Optimizador MML</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Auditor & Optimizador MML</h1>
+            <p>Evaluación y refactorización de Matriz de Marco Lógico en estructura estricta de producción.</p>
+        </header>
+
+        <!-- Formulario Principal de Entrada -->
+        <section class="form-section">
+            <form id="mmlForm">
+                <label for="jsonInput"><strong>Objeto JSON (Matriz de Marco Lógico):</strong></label>
+                <textarea id="jsonInput" rows="12" placeholder="Pegue aquí el JSON de la MML..." required></textarea>
+                
+                <div class="form-actions">
+                    <button type="submit" id="btnSubmit" class="btn-primary">1. Evaluar Matriz</button>
+                    
+                    <button type="button" class="btn-secondary" onclick="document.getElementById('jsonFileInput').click()">
+                        📁 Cargar JSON
+                    </button>
+                    <input type="file" id="jsonFileInput" accept=".json,application/json" style="display: none;">
+
+                    <label for="uploadInput" class="btn-secondary custom-file-upload">
+                        Cargar Evaluación (.json)
+                    </label>
+                    <input type="file" id="uploadInput" accept=".json">
+                </div>
+            </form>
+        </section>
+
+        <!-- Indicador de Carga -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p id="loadingText">Procesando solicitud con IA...</p>
+        </div>
+
+        <!-- Card con Resultados de Evaluación -->
+        <section id="evaluationCard" class="card hidden">
+            <div class="card-header">
+                <h2>Informe de Auditoría Metodológica</h2>
+                <div class="card-actions">
+                    <button id="btnEjecutarMejora" class="btn-warning">2. Preparar Mejoras con IA</button>
+                    <button id="downloadBtn" class="btn-success">Guardar Informe (.json)</button>
+                    <button id="clearStorageBtn" class="btn-secondary">Borrar Memoria</button>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="metric-box">
+                    <span class="label">Cumplimiento General</span>
+                    <span id="cumplimientoVal" class="value">-</span>
+                </div>
+                <div class="metric-box">
+                    <span class="label">Estado de Validación</span>
+                    <span id="estadoVal" class="value">-</span>
+                </div>
+            </div>
+
+            <h3>Matriz de Alineación por Nivel</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nivel</th>
+                            <th>Objetivo Teórico</th>
+                            <th>Cumplimiento</th>
+                            <th>Observación</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alineacionTbody"></tbody>
+                </table>
+            </div>
+
+            <h3>Ejes de Control</h3>
+            <div id="ejesContainer" class="ejes-grid"></div>
+
+            <div class="veredicto-box">
+                <h3>Veredicto Final</h3>
+                <p id="veredictoText"></p>
+            </div>
+        </section>
+
+        <!-- Editor Transparente de Prompt -->
+        <section id="promptEditorSection" class="card hidden margin-top">
+            <div class="card-header">
+                <h2>Revisión y Edición del Prompt</h2>
+            </div>
+            <p class="description">
+                Revise o adapte el prompt generado a partir de la auditoría antes de enviarlo a la IA para ejecutar la refactorización.
+            </p>
+            
+            <label for="promptTextarea"><strong>Instrucciones para la IA (Editable):</strong></label>
+            <textarea id="promptTextarea" rows="12"></textarea>
+
+            <div class="form-actions margin-top">
+                <button id="btnConfirmarIA" class="btn-primary">🚀 Confirmar y Ejecutar Refactorización</button>
+                <button id="btnCancelarPrompt" class="btn-secondary">Cancelar</button>
+            </div>
+        </section>
+
+        <!-- Panel de Previsualización y Aprobación de la IA -->
+        <section id="aiResultSection" class="card hidden margin-top">
+            <div class="card-header">
+                <h2>Previsualización de la Refactorización</h2>
+                <div class="card-actions">
+                    <button id="btnAprobarCambios" class="btn-success">✅ Aprobar y Cargar en Entrada</button>
+                    <button id="btnDescartarCambios" class="btn-secondary">❌ Descartar</button>
+                </div>
+            </div>
+            <p class="description">
+                Revise la propuesta generada por la IA. Al hacer clic en <strong>"Aprobar"</strong>, este JSON se inyectará directamente en el formulario principal para iniciar un nuevo ciclo de auditoría.
+            </p>
+            <textarea id="aiResultOutput" rows="14" placeholder="Esperando propuesta de la IA..."></textarea>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

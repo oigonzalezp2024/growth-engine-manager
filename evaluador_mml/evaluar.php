@@ -102,7 +102,7 @@ try {
         ]
     ];
 
-    $gemini = new GeminiService(GEMINI_API_KEY, "gemini-2.5-flash");
+    $gemini = new GeminiService(GEMINI_API_KEY, GEMINI_API_MODEL);
     $evaluacionTexto = $gemini->generateContent($contents, $systemInstruction, $jsonSchema, 0.1);
 
     ob_clean();

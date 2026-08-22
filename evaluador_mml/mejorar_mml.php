@@ -86,7 +86,7 @@ try {
         ]
     ];
 
-    $gemini = new GeminiService(GEMINI_API_KEY, "gemini-2.5-flash");
+    $gemini = new GeminiService(GEMINI_API_KEY, GEMINI_API_MODEL);
     $mmlOptimizadaRaw = $gemini->generateContent($contents, $systemInstruction, $jsonSchema, 0.2);
 
     ob_clean();

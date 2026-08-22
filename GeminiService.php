@@ -11,7 +11,7 @@ class GeminiService
 
     public function __construct(
         string $apiKey, 
-        string $model = "gemini-2.5-flash", 
+        string $model = "gemini-3.6-flash", 
         int $timeout = 120, 
         int $maxRetries = 2
     ) {

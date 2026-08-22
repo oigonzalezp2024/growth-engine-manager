@@ -1,0 +1,92 @@
+{
+  "matriz_marco_logico": {
+    "titulo": "Plan Estratégico Comercial: Captación B2B para Desarrollo de Software a Medida enfocado en Digitalización de PyMEs Tradicionales",
+    "periodo_ejecucion": "Q3-Q4 2026",
+    "niveles": [
+      {
+        "nivel": "FIN",
+        "resumen_narrativo": "Posicionarme como un aliado clave en la transformación digital de pequeñas y medianas empresas tradicionales, ayudándolas a reemplazar procesos analógicos y basados en papel por soluciones de software personalizadas que optimicen sus operaciones e incrementen mis ingresos como desarrollador independiente.",
+        "indicadores_verificables": [
+          "Crecimiento del 40% en los ingresos por servicios independientes de desarrollo de software sobre la línea base",
+          "Retorno sobre la inversión comercial (ROI comercial) >= 4.0x"
+        ],
+        "medios_de_verificacion": [
+          "Registro de facturación e ingresos del desarrollador independiente",
+          "Propuestas técnicas y contratos formales de desarrollo y comprobantes de pago de clientes"
+        ],
+        "supuestos": [
+          "Disposición e interés continuo de los dueños de PyMEs en destinar presupuesto para digitalizar sus negocios",
+          "Mantenimiento de la estabilidad económica en el sector PyME local/regional"
+        ]
+      },
+      {
+        "nivel": "PROPOSITO",
+        "resumen_narrativo": "Identificar dueños de negocios tradicionales y demostrarles el valor tangible de digitalizar sus procesos, logrando el cierre de proyectos de software a medida adaptados a su operativa cotidiana.",
+        "indicadores_verificables": [
+          "Cierre de al menos 3 a 5 proyectos de desarrollo custom durante el periodo de ejecución Q3-Q4 2026 con acta de inicio y anticipo recibido",
+          "Ticket promedio por proyecto de software >= $1,400 USD",
+          "Costo por Lead Calificado (SQL / Reunión con dueño de negocio) inferior a $100 USD",
+          "Tasa de conversión de propuesta comercial a proyecto contratado >= 25%"
+        ],
+        "medios_de_verificacion": [
+          "Sistema de gestión CRM para el seguimiento formal de oportunidades y pipeline comercial",
+          "Actas de inicio de proyecto y contratos de desarrollo de software firmados con comprobante de anticipo"
+        ],
+        "supuestos": [
+          "Los dueños de negocio tienen autonomía y velocidad en la toma de decisiones sin burocracia excesiva",
+          "El alcance de los proyectos se mantiene razonable para ejecución individual (1 persona) dentro de los plazos acordados"
+        ]
+      },
+      {
+        "nivel": "COMPONENTES",
+        "resumen_narrativo": [
+          "C1. Ecosistema de captación digital directa y prospección hiperlocal operativa con base de prospectos cualificada y campañas publicitarias activas.",
+          "C2. Kit comercial de consultoría inicial y material educativo estructurado para la sensibilización del cliente de papel a software.",
+          "C3. Proceso estandarizado de diagnóstico operativo, paquete de propuestas comerciales por fases y documentación legal de contratación validada."
+        ],
+        "indicadores_verificables": [
+          "100% de los canales publicitario-comerciales (Google Search local, Meta Ads y WhatsApp Business) configurados y operando con mensajes en lenguaje no técnico",
+          "Mínimo 8 reuniones de diagnóstico operativo agendadas con dueños de PyMEs al mes",
+          "100% de los proyectos iniciados cuentan con paquete completo de diagnóstico, contrato legal de desarrollo y acuerdo de confidencialidad firmado",
+          "Trazabilidad formal de punta a punta desde el primer contacto hasta la firma de documentos legales en el CRM"
+        ],
+        "medios_de_verificacion": [
+          "Reportes de rendimiento de plataformas publicitarias (Meta Ads Manager y Google Ads)",
+          "Bitácora de reuniones y pipeline de prospección en el CRM",
+          "Repositorio documental en la nube (Google Drive / Notion) con kits educativos y contratos ejecutados"
+        ],
+        "supuestos": [
+          "Los dueños de negocio muestran apertura para compartir sus dolores operativos y flujos de trabajo actuales",
+          "Disponibilidad de tiempo del desarrollador para atender reuniones de diagnóstico sin descuidar las entregas operativas",
+          "Acceso y control total de herramientas publicitarias y plataformas digitales por parte del desarrollador"
+        ]
+      },
+      {
+        "nivel": "ACTIVIDADES",
+        "resumen_narrativo": [
+          "A1.1. Configurar y ejecutar campañas publicitarias locales en Meta Ads y Google Search con mensajes centrados en ahorro de tiempo y eliminación de papel.",
+          "A1.2. Construir e iterar una base de datos priorizada de prospectos PyME locales y asociaciones de comercio para prospección directa.",
+          "A2.1. Diseñar el kit digital descargable 'Del Papel al Software' y elaborar presentaciones visuales de casos de éxito en lenguaje simple.",
+          "A2.2. Implementar plantillas de mensajes y guiones de venta conversacionales en WhatsApp Business y correo electrónico para seguimiento de prospectos.",
+          "A3.1. Elaborar la plantilla estándar de 'Diagnóstico Operativo' y ejecutar sesiones de descubrimiento gratuitas de 30-45 minutos con dueños de negocio.",
+          "A3.2. Estructurar propuestas técnicas en hojas de ruta por fases y redactar la documentación legal formal (contratos y acuerdo de confidencialidad/servicio)."
+        ],
+        "indicadores_verificables": [
+          "Base de datos activa de PyMEs locales segmentada por sector y nivel de digitalización",
+          "Publicación y difusión de 2 contenidos/casos de estudio adaptados a lenguaje no técnico al mes",
+          "100% de las propuestas entregadas acompañadas de una hoja de ruta por fases de bajo riesgo",
+          "Canal de WhatsApp Business habilitado con respuestas rápidas y catálogo de servicios actualizado"
+        ],
+        "medios_de_verificacion": [
+          "Administrador de anuncios de Meta/Google y registros de interacciones en WhatsApp Business",
+          "Historial de diagnósticos realizados, minutas y propuestas comerciales entregadas en el CRM",
+          "Carpetas de archivos del proyecto con plantillas y contratos maestros redactados"
+        ],
+        "supuestos": [
+          "Los clientes actuales aceptan compartir testimonios o métricas simples de ahorro de tiempo tras implementar el software",
+          "Disponibilidad constante de conectividad y plataformas digitales para el despliegue de la campaña comercial"
+        ]
+      }
+    ]
+  }
+}

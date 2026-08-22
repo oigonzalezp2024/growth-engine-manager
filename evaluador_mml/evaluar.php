@@ -29,7 +29,7 @@ function evaluarMatrizMarcoLogico(array $mmlData, string $apiKey): string
         . "proporcionada en formato JSON. Debes responder ÚNICAMENTE con el objeto JSON que cumpla el esquema exacto.";
 
     $promptUser = "Evalúa metodológicamente la siguiente Matriz de Marco Lógico en JSON:\n\n" 
-        . json_encode($mmlData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        . json_encode($mmlData, JSON_UNESCAPED_UNICODE);
 
     $jsonSchema = [
         "type" => "OBJECT",

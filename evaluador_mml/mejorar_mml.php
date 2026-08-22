@@ -113,7 +113,7 @@ function mejorarMatrizMarcoLogico(string $promptUser, string $apiKey): string
 try {
     $promptFinal = $payloadData['custom_prompt'] ?? (
         "Refactoriza la siguiente MML aplicando observaciones:\n\n" .
-        json_encode($payloadData['mml_original'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+        json_encode($payloadData['mml_original'], JSON_UNESCAPED_UNICODE)
     );
 
     $mmlOptimizadaRaw = mejorarMatrizMarcoLogico($promptFinal, $apiKey);

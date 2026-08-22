@@ -88,7 +88,7 @@ try {
     ];
 
     // 6. Instancia y ejecución del servicio
-    $gemini = new GeminiService(GEMINI_API_KEY, "gemini-2.5-flash");
+    $gemini = new GeminiService(GEMINI_API_KEY, GEMINI_API_MODEL);
     $aiContentRaw = $gemini->generateContent($contents, $systemPrompt, $jsonSchema, 0.2);
 
     unset($contents, $mml, $metaInsights);
